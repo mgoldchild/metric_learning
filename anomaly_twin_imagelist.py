@@ -5,16 +5,21 @@ from PIL import ImageFilter
 
 
 class AnomalyTwinImageList(ImageList):
-    """ImageList that doubles 'true' label images as 'false' twin.
-    Artificially generated twin will have a small scar on the image
-    to simulate that a defect happened to be there on the image.
-
-    Feed 'true' labeled images only.
     """
-    SIZE = 224
-    WIDTH_MIN = 1
-    WIDTH_MAX = 16
-    LENGTH_MAX = 225 // 5
+    ImageList extends ItemList
+
+    ref:
+    - https://docs.fast.ai/vision.data.html#ImageList
+    - https://docs.fast.ai/data_block.html#ItemList
+
+    画像リストのTrueラベルの画像をfalse画像として二倍にする
+    そのfalse画像は小さなキズをつけて欠陥品をシミューレーションする
+    AnomalyTwinImageList#get
+    """
+    SIZE = 224 # 画像サイズ
+    WIDTH_MIN = 1 # 傷のwidth_min
+    WIDTH_MAX = 16 # 傷のwidth_max
+    LENGTH_MAX = 225 # 傷の長さ
     COLOR = True
 
     @classmethod
